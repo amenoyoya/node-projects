@@ -24,7 +24,7 @@ const writeFile = (filepath, content) => {
   fs.writeFileSync(filepath, content);
 };
 
-const package =
+const package = String.raw
 `{
   "scripts": {
     "start": "webpack-dev-server --hot --inline"
@@ -50,7 +50,7 @@ const package =
   }
 }`;
 
-const webpack =
+const webpack = String.raw
 `const path = require('path');
 // vue-loader plugin
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
@@ -75,7 +75,7 @@ module.exports = {
     rules: [
       {
         // 拡張子 .js の場合
-        test: /\.js$/,
+        test: /\\.js$/,
         // babel-loaderを使って ES6 をコンパイル
         loader: "babel-loader",
         // Babel のオプションを指定
@@ -150,13 +150,14 @@ module.exports = {
   }
 };`;
 
-const app =
+const app = String.raw
 `<template>
   <v-app>
+    <v-alert :value="true" type="success">Hello, World!</v-alert>
   </v-app>
 </template>`;
 
-const indexjs =
+const indexjs = String.raw
 `import Vue from 'vue';
 import App from './App'
 import Vuetify from 'vuetify';
@@ -174,7 +175,7 @@ new Vue({
   render: h => h(App)
 });`;
 
-const index =
+const index = String.raw
 `<!DOCTYPE html>
 <html lang="ja">
     <head>
