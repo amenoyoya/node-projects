@@ -44,3 +44,30 @@ $ yarn start
     |- package.json
     `- webpack.config.js
     ```
+
+---
+
+### React
+```bash
+# generate minimal react project
+$ curl https://raw.githubusercontent.com/amenoyoya/node-projects/master/react.js | node -
+
+# install node modules
+$ yarn install
+
+# run webpack-dev-server
+$ yarn start
+
+# => Run React App on http://localhost:3000 
+```
+
+- Minimal React Project:
+    ```conf
+    ./
+    |- public/
+    |   `- index.html
+    |- src/
+    |   `- index.js
+    |- package.json
+    `- webpack.config.js
+    ```
