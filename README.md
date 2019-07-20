@@ -71,3 +71,31 @@ $ yarn start
     |- package.json
     `- webpack.config.js
     ```
+
+---
+
+### TypeScript
+```bash
+# generate minimal typescript project
+$ curl https://raw.githubusercontent.com/amenoyoya/node-projects/master/typescript.js | node -
+
+# install node modules
+$ yarn install
+
+# run webpack-dev-server
+$ yarn start
+
+# => Run TypeScript App on http://localhost:3000 
+```
+
+- Minimal TypeScript Project:
+    ```conf
+    ./
+    |- public/
+    |   `- index.html
+    |- src/
+    |   `- main.ts
+    |- package.json
+    |- tsconfig.json
+    `- webpack.config.js
+    ```
