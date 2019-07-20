@@ -55,6 +55,7 @@ const package = String.raw
   "devDependencies": {
     "@babel/core": "^7.5.0",
     "@babel/preset-env": "^7.5.0",
+    "axios": "^0.19.0",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.0.0",
     "material-design-icons-iconfont": "^5.0.1",
@@ -62,6 +63,7 @@ const package = String.raw
     "url-loader": "^2.0.1",
     "vue": "^2.6.10",
     "vue-loader": "^15.7.0",
+    "vue-router": "^3.0.7",
     "vue-template-compiler": "^2.6.10",
     "vuetify": "^1.5.16",
     "webpack": "^4.35.2",

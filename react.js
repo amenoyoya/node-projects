@@ -53,6 +53,7 @@ const package = String.raw
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
+    "axios": "^0.19.0",
     "babel-loader": "^8.0.6",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^3.0.0",
