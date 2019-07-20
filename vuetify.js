@@ -64,8 +64,6 @@ const package = String.raw
     "vue-loader": "^15.7.0",
     "vue-template-compiler": "^2.6.10",
     "vuetify": "^1.5.16",
-    "ts-loader": "^6.0.4",
-    "typescript": "^3.5.3",
     "webpack": "^4.35.2",
     "webpack-cli": "^3.3.5",
     "webpack-dev-server": "^3.7.2"
@@ -120,12 +118,6 @@ module.exports = {
         use: "vue-loader"
       },
       {
-        // 拡張子 .ts の場合
-        test: /\.ts$/,
-        // ts-loaderを使って TypeScript をコンパイル
-        use: "ts-loader"
-      },
-      {
         // .css ファイル: css-loader => style-loader の順に適用
         // - css-loader: cssをJSにトランスコンパイル
         // - style-loader: <link>タグにスタイル展開
@@ -161,7 +153,7 @@ module.exports = {
   },
   // import文で読み込むモジュールの設定
   resolve: {
-    extensions: [".js", ".vue", ".ts"], // .js, .vue, .ts をimport可能に
+    extensions: [".js", ".vue"], // .js, .vue をimport可能に
     modules: ["node_modules"], // node_modulesディレクトリからimport可能に
     alias: {
       // vue-template-compilerに読ませてコンパイルするために必要
@@ -233,5 +225,4 @@ writeFile('./public/index.html', index);
 writeFile('./src/App.vue', app);
 writeFile('./src/index.js', indexjs);
 writeFile('./package.json', package);
-writeFile('./tsconfig.json', tsconfig_json);
 writeFile('./webpack.config.js', webpack);
