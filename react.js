@@ -59,6 +59,8 @@ const package = String.raw
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "style-loader": "^0.23.1",
+    "ts-loader": "^6.0.4",
+    "typescript": "^3.5.3",
     "webpack": "^4.35.0",
     "webpack-cli": "^3.3.4",
     "webpack-dev-server": "^3.7.2"
@@ -105,6 +107,12 @@ module.exports = {
                 }
             },
             {
+              // 拡張子 .ts の場合
+              test: /\.ts$/,
+              // ts-loaderを使って TypeScript をコンパイル
+              use: "ts-loader"
+            },
+            {
                 // .css ファイル: css-loader => style-loader の順に適用
                 // - css-loader: cssをJSにトランスコンパイル
                 // - style-loader: <link>タグにスタイル展開
@@ -119,6 +127,11 @@ module.exports = {
             }
         ]
     },
+    // import文で読み込むモジュールの設定
+    resolve: {
+      extensions: [".js", ".jsx", ".ts"], // .js, .jsx, .ts をimport可能に
+      modules: ["node_modules"], // node_modulesディレクトリからimport可能に
+    },
     // 開発サーバー設定
     devServer: {
         // 起点ディレクトリを public/ に設定
@@ -129,6 +142,15 @@ module.exports = {
         open: true
     }
 };`;
+
+const tsconfig_json = String.raw
+`{
+  "compilerOptions": {
+    "sourceMap": true,
+    "target": "es5", // TypeScriptをECMAScript5にコンパイル
+    "module": "es2015" // TypeScriptのモジュールは ES Modules として出力
+  }
+}`;
 
 const indexjs = String.raw
 `import React from 'react';
@@ -156,7 +178,8 @@ const index = String.raw
     </body>
 </html>`;
 
-writeFile('./package.json', package);
-writeFile('./webpack.config.js', webpack);
-writeFile('./src/index.js', indexjs);
 writeFile('./public/index.html', index);
+writeFile('./src/index.js', indexjs);
+writeFile('./package.json', package);
+writeFile('./tsconfig.json', tsconfig_json);
+writeFile('./webpack.config.js', webpack);

@@ -42,6 +42,7 @@ $ yarn start
     |   |- App.vue
     |   `- index.js
     |- package.json
+    |- tsconfig.json
     `- webpack.config.js
     ```
 
@@ -69,6 +70,7 @@ $ yarn start
     |- src/
     |   `- index.js
     |- package.json
+    |- tsconfig.json
     `- webpack.config.js
     ```
 
