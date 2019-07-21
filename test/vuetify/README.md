@@ -167,6 +167,9 @@ $ yarn add -D vuetify
 # install material-design-icons-iconfront
 $ yarn add -D material-design-icons-iconfont
 
+# install fontawesome
+$ yarn add @fortawesome/fontawesome-free -D
+
 # install url-loader
 $ yarn add -D url-loader
 
@@ -245,3 +248,16 @@ $ yarn add -D babel-polyfill
     $ yarn start
     # => "Hello, World!" in http://localhost:3000
     ```
+
+---
+
+### Including vue-router
+```bash
+$ yarn add -D vue-router
+```
+
+- **src/App.vue**
+  ```vue
+  
+  ```
+- **src/index.js**

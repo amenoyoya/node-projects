@@ -55,6 +55,7 @@ const package = String.raw
   "devDependencies": {
     "@babel/core": "^7.5.0",
     "@babel/preset-env": "^7.5.0",
+    "@fortawesome/fontawesome-free": "^5.9.0",
     "axios": "^0.19.0",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.0.0",
@@ -175,38 +176,56 @@ module.exports = {
   }
 };`;
 
-const tsconfig_json = String.raw
-`{
-  "compilerOptions": {
-    "sourceMap": true,
-    "target": "es5", // TypeScriptをECMAScript5にコンパイル
-    "module": "es2015" // TypeScriptのモジュールは ES Modules として出力
-  }
-}`;
-
 const app = String.raw
 `<template>
-  <v-app>
-    <v-alert :value="true" type="success">Hello, World!</v-alert>
-  </v-app>
+<v-app>
+  <v-navigation-drawer app></v-navigation-drawer>
+  <v-toolbar app></v-toolbar>
+  <v-content>
+    <v-container fluid>
+      <router-view></router-view>
+    </v-container>
+  </v-content>
+  <v-footer app></v-footer>
+</v-app>
 </template>`;
 
 const indexjs = String.raw
 `import Vue from 'vue';
 import App from './App'
 import Vuetify from 'vuetify';
+import Router from 'vue-router';
+
 // vuetifyのスタイルシートload
 import 'vuetify/dist/vuetify.min.css';
 // material-design-iconsをload
 import 'material-design-icons-iconfont/dist/material-design-icons.css';
+// fontawesome
+import '@fortawesome/fontawesome-free/css/all.css';
 // IE11/Safari9用のpolyfill
 import 'babel-polyfill';
 
+// Homeコンポーネント
+const Home = {
+  template: '<v-alert :value="true" type="success">Hello, World!</v-alert>'
+};
+
 Vue.use(Vuetify); // Vuetifyのコンポーネントを使用可能に
+
+// ルーター設定
+Vue.use(Router);
+const router = new Router({
+  mode: 'history',
+  routes: [
+    {path: '/', component: Home},
+  ]
+});
 
 new Vue({
   el: "#app",
-  render: h => h(App)
+  router,
+  components: {App},
+  template: '<App/>'
 });`;
 
 const index = String.raw
