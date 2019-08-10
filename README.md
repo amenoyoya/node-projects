@@ -58,7 +58,7 @@ $ yarn install
 # run webpack-dev-server
 $ yarn start
 
-# => Run Vuetify App on http://localhost:3000 
+# => Run Vue App on http://localhost:3000 
 ```
 
 - Minimal Vuetify Project:
