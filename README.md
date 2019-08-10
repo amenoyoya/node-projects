@@ -47,6 +47,34 @@ $ yarn start
 
 ---
 
+### Vue
+```bash
+# generate minimal vue project
+$ curl https://raw.githubusercontent.com/amenoyoya/node-projects/master/vue.js | node -
+
+# install node modules
+$ yarn install
+
+# run webpack-dev-server
+$ yarn start
+
+# => Run Vuetify App on http://localhost:3000 
+```
+
+- Minimal Vuetify Project:
+    ```conf
+    ./
+    |- public/
+    |   `- index.html
+    |- src/
+    |   |- App.vue
+    |   `- index.js
+    |- package.json
+    `- webpack.config.js
+    ```
+
+---
+
 ### React
 ```bash
 # generate minimal react project
