@@ -67,14 +67,15 @@ const package = String.raw
 }`;
 
 const webpack = String.raw
-`const VueLoaderPlugin = require('vue-loader/lib/plugin');
+`const path = require('path');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
   mode: 'development', // 開発: development, 本番: production
   entry: './src/index.js', // コンパイルのエントリーポイントファイル
   // 出力先パス（絶対パス指定）
   output: {
-    path: \`\${__dirname}/dist\`,
+    path: path.join(__dirname, 'dist'),
     filename: 'bundle.js'
   },
   module: {
@@ -120,7 +121,7 @@ module.exports = {
   plugins: [new VueLoaderPlugin()],
   // 開発サーバー設定
   devServer: {
-    contentBase: \`\${__dirname}/dist\`, // サーバールートディレクトリ
+    contentBase: path.join(__dirname, 'dist'), // サーバールートディレクトリ
     port: 3000,
     open: true // ブラウザを自動的に開く
   }
