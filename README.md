@@ -19,34 +19,6 @@ Node.jsの開発環境でよく使うプロジェクトの最小構成を生成�
 
 ## Project templates
 
-### Vuetify
-```bash
-# generate minimal vuetify project
-$ curl https://raw.githubusercontent.com/amenoyoya/node-projects/master/vuetify.js | node -
-
-# install node modules
-$ yarn install
-
-# run webpack-dev-server
-$ yarn start
-
-# => Run Vuetify App on http://localhost:3000 
-```
-
-- Minimal Vuetify Project:
-    ```conf
-    ./
-    |- public/
-    |   `- index.html
-    |- src/
-    |   |- App.vue
-    |   `- index.js
-    |- package.json
-    `- webpack.config.js
-    ```
-
----
-
 ### Vue
 ```bash
 # generate minimal vue project
