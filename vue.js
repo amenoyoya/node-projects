@@ -50,95 +50,79 @@ const writeFile = (filepath, content) => {
 const package = String.raw
 `{
   "scripts": {
-    "start": "webpack-dev-server --hot --inline"
+    "start": "webpack-dev-server --hot --inline",
+    "watch": "webpack --watch"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "babel-loader": "^8.0.6",
-    "css-loader": "^3.2.0",
-    "style-loader": "^1.0.0",
     "vue": "^2.6.10",
     "vue-loader": "^15.7.1",
     "vue-template-compiler": "^2.6.10",
-    "webpack": "^4.39.1",
-    "webpack-cli": "^3.3.6",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7",
     "webpack-dev-server": "^3.8.0"
   }
 }`;
 
 const webpack = String.raw
-`const path = require('path');
-// vue-loader plugin
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+`const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
-  // 実行モード: develop => 開発, production => 本番
-  // webpack4系以降はmodeを指定しないと警告が出る
-  mode: 'development',
-  // エントリーポイント
-  entry: "./src/index.js",
-  // 出力設定
+  mode: 'development', // 開発: development, 本番: production
+  entry: './src/index.js', // コンパイルのエントリーポイントファイル
+  // 出力先パス（絶対パス指定）
   output: {
-    // バンドル後のファイル名
-    filename: 'bundle.js',
-    // 出力先のパス（※絶対パスで指定すること）
-    path: path.join(__dirname, 'public')
+    path: \`\${__dirname}/dist\`,
+    filename: 'bundle.js'
   },
-  // ビルドしたJavaScriptにsource-mapを書き出す
-  devtool: 'inline-soruce-map',
-  // モジュール設定
   module: {
+    // コンパイル設定
     rules: [
       {
-        // 拡張子 .js の場合
-        test: /\\.js$/,
-        // babel-loaderを使って ES6 をコンパイル
-        loader: "babel-loader",
-        // Babel のオプションを指定
-        options: {
-          // preset_env の構文拡張を有効に
-          presets: [
-            ["@babel/preset-env"]
-          ]
-        },
-        // node_modules/ 内のファイルは除外
-        exclude: /node_modules/
+        // .js ファイル
+        test: /\.js$/,
+        use: [
+          {
+            loader: 'babel-loader', // babel-loader で ECMAScript5 にトランスコンパイル
+            options: {
+              presets: ['@babel/preset-env']　// ブラウザ環境に合わせて自動的にコンパイル
+            }
+          }
+        ]
       },
       {
-        // 拡張子 .vue の場合
+        // .vue ファイル
         test: /\.vue$/,
-        // vue-loaderを使って vue をコンパイル
-        use: "vue-loader"
-      },
-      {
-        // .css ファイル: css-loader => style-loader の順に適用
-        // - css-loader: cssをJSにトランスコンパイル
-        // - style-loader: <link>タグにスタイル展開
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader']
-      },
+        use: [
+          {
+            loader: 'vue-loader', // vue-loader で Vueコンポーネントファイルをコンパイル
+            options: {
+              loaders: {
+                js: ['babel-loader'] // .vue ファイル内の script タグを babel-loader でトランスコンパイル
+              },
+              presets: ['@babel/preset-env']
+            }
+          }
+        ]
+      }
     ]
   },
-  // import文で読み込むモジュールの設定
+  // import設定
   resolve: {
-    extensions: [".js", ".vue"], // .js, .vue をimport可能に
-    modules: ["node_modules"], // node_modulesディレクトリからimport可能に
+    extensions: [".js", ".vue"], // .js, .vue を import
+    modules: ["node_modules"],
     alias: {
-      // vue-template-compilerに読ませてコンパイルするために必要
-      vue$: 'vue/dist/vue.esm.js',
+      vue$: 'vue/dist/vue.esm.js', // vue-template-compiler用
     },
   },
-  // VueLoaderPluginロード
   plugins: [new VueLoaderPlugin()],
   // 開発サーバー設定
   devServer: {
-    // 起点ディレクトリを public/ に設定
-    contentBase: path.join(__dirname, 'public'),
-    // ポートを3000に設定
+    contentBase: \`\${__dirname}/dist\`, // サーバールートディレクトリ
     port: 3000,
-    // ブラウザを自動的に開く
-    open: true
+    open: true // ブラウザを自動的に開く
   }
 };`;
 
