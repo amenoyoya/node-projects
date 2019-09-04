@@ -137,7 +137,7 @@ const app = String.raw
 
 const indexjs = String.raw
 `import Vue from 'vue';
-import App from './App'    
+import App from './App';
 
 new Vue({
   el: '#app', // Vueでマウントする要素
